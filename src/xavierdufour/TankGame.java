@@ -11,7 +11,6 @@ public class TankGame extends Game {
     public TankGame() {
         gamePad = new GamePad();
         tank = new Tank(gamePad);
-        super.addKeyListener(gamePad);
     }
 
     @Override
