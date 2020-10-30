@@ -2,6 +2,8 @@ package xavierdufour.engine.entity;
 
 import xavierdufour.engine.Buffer;
 
+import java.awt.*;
+
 public abstract class StaticEntity {
 
     protected int x;
@@ -36,4 +38,13 @@ public abstract class StaticEntity {
     public int getHeight() {
         return height;
     }
+
+    public boolean intersectWith(StaticEntity other) {
+        return getBounds().intersects(other.getBounds());
+    }
+
+    protected Rectangle getBounds() {
+        return new Rectangle(x, y, width, height);
+    }
+
 }
