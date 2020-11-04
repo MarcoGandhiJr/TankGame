@@ -33,8 +33,7 @@ public class Missile extends MovableEntity {
     @Override
     public void update() {
         super.update();
-        super.move(tankDirection);
-    }
+        super.move(tankDirection);    }
 
     @Override
     public void draw(Buffer buffer) {
