@@ -1,5 +1,6 @@
 package xavierdufour.engine.entity;
 
+import xavierdufour.engine.Buffer;
 import xavierdufour.engine.controls.Direction;
 
 import java.awt.*;
@@ -15,6 +16,16 @@ public abstract class MovableEntity extends UpdatableEntity{
 
     public MovableEntity() {
         collision = new Collision(this);
+    }
+
+    @Override
+    public void update() {
+        moved = false;
+    }
+
+    @Override
+    public void draw(Buffer buffer) {
+
     }
 
     public boolean hasMoved() {
@@ -47,11 +58,14 @@ public abstract class MovableEntity extends UpdatableEntity{
         int allowedDistance = collision.getAllowedSpeed(direction);
         x += direction.getVelocityX(allowedDistance);
         y += direction.getVelocityY(allowedDistance);
-        if (x != lastX || y != lastY) {
-            moved = true;
-        }
+        moved = x != lastX || y != lastY;
         lastX = x;
         lastY = y;
+    }
+
+    public void drawHitBox(Buffer buffer) {
+        Rectangle rectangle = getHitBox();
+        buffer.drawRectangle(rectangle.x, rectangle.y, rectangle.width, rectangle.height, Color.RED);
     }
 
     protected Rectangle getHitBox() {
